@@ -20,7 +20,7 @@ namespace Demo_ASP_MVC_Formulaire.Controllers
             Console.WriteLine("Affichage du formulaire (GET)");
             // Le formulaire d'ajout
 
-            return View(new PersonForm());
+            return View("Add_TagHelper", new PersonForm());
         }
 
         [HttpPost]
@@ -31,7 +31,7 @@ namespace Demo_ASP_MVC_Formulaire.Controllers
             // Traitement des données
             if (!ModelState.IsValid)
             {
-                return View(personForm);
+                return View("Add_TagHelper", personForm);
             }
 
             // Ajout dans la liste

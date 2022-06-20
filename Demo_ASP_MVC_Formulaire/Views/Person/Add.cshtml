@@ -5,23 +5,28 @@
 }
 
 <h1>Ajouter une personne</h1>
+@Html.ActionLink("Retour à la liste", "Index", "Person", null, new { @class = "btn btn-warning mb-2"})
 
-<form method="post">
-    <div>
-        <label for="firstname">Prénom</label>
-        <input id="firstname" type="text" name="firstname" value="@Model.Firstname" />
+@using(@Html.BeginForm(FormMethod.Post, new { @class = "text-primary" })) {
+    <div class="mb-1">
+        @Html.LabelFor(Model => Model.Firstname)
+        @Html.EditorFor(Model => Model.Firstname, new { htmlAttributes = new { placeholder = "Jo"} })
+        @Html.ValidationMessageFor(Model => Model.Firstname, null, new { @class = "text-danger" })
     </div>
-    <div>
-        <label for="lastname">Nom</label>
-        <input id="lastname" type="text" name="lastname" value="@Model.Lastname" />
+    <div class="mb-1">
+        <label for="Lastname">@Html.DisplayNameFor(Model => Model.Lastname)</label>
+        <input id="Lastname" type="text" name="lastname" value="@Model.Lastname" />
+        @Html.ValidationMessageFor(Model => Model.Lastname, null, new { @class = "text-danger" })
     </div>
-    <div>
-        <label for="email">Email</label>
-        <input id="email" type="email" name="email" value="@Model.Email" />
+    <div class="mb-1">
+        @Html.LabelFor(Model => Model.Email)
+        @Html.EditorFor(Model => Model.Email)
+        @Html.ValidationMessageFor(Model => Model.Email, null, new { @class = "text-danger" })
     </div>
-    <button type="submit">Ajouter</button>
-</form>
-
-<div class="text-danger">
-    @Html.ValidationSummary()
-</div>
+    <div class="mb-1">
+        @Html.LabelFor(Model => Model.Secret)
+        @Html.EditorFor(Model => Model.Secret)
+        @Html.ValidationMessageFor(Model => Model.Secret, null, new { @class = "text-danger" })
+    </div>
+    <button type="submit" class="btn btn-dark">Ajouter</button>
+}
